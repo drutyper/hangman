@@ -5,11 +5,22 @@ class Hangman
   attr_reader :answer, :letter
 
   def initialize
-    @letter = rand(a..z)
+    @word = File.readlines("words.txt").sample.chomp
+    @guess = array.new.length(@word)
     @tries = 9
     @user_has_won = false
     @correct_guess = true
   end
+
+  def board
+    @answer.each do |letter|
+      if letter == guess
+        print @letter
+      else
+        print "_"
+      end
+    end
+  end 
 
   def complete 
     won? || losts?
@@ -32,4 +43,4 @@ class Hangman
     end
   end
 end
-
+binding.pry
